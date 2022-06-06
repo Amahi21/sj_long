@@ -6,7 +6,7 @@
 /*   By: amahi <amahi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:48:55 by amahi             #+#    #+#             */
-/*   Updated: 2021/11/25 20:29:36 by amahi            ###   ########.fr       */
+/*   Updated: 2022/05/31 17:42:25 by amahi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	one_str = filling_one_str(fd, one_str);
-	if(!one_str)
+	if (!one_str)
 		return (NULL);
 	result = filling_result(one_str);
 	one_str = cat_one_str(one_str);

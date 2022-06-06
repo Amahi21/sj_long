@@ -6,12 +6,11 @@
 /*   By: amahi <amahi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 07:45:27 by amahi             #+#    #+#             */
-/*   Updated: 2022/05/23 10:20:13 by amahi            ###   ########.fr       */
+/*   Updated: 2022/06/03 16:24:15 by amahi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 void	filling_struct(char **map, int lines, t_src *data)
 {
@@ -31,15 +30,14 @@ void	filling_struct(char **map, int lines, t_src *data)
 				data->score += 1;
 			if (map[i][j] == 'P')
 			{
-				data->player_pos_x = j + 1;
-				data->player_pos_y = i + 1;
+				data->player_pos_x = j;
+				data->player_pos_y = i;
 			}
 				j++;
 		}
 		i++;
 	}
 	data->collect_score = 0;
-	data->game_over = 0;
 }
 
 void	borders(char **map, int lines)

@@ -6,7 +6,7 @@
 /*   By: amahi <amahi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 07:45:44 by amahi             #+#    #+#             */
-/*   Updated: 2022/05/23 10:23:48 by amahi            ###   ########.fr       */
+/*   Updated: 2022/05/31 18:25:58 by amahi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,25 @@ int	skip_n(char *filename)
 	{
 		if (tmpstr[0] == '\n')
 			i++;
+		free(tmpstr);
 		tmpstr = get_next_line(fd);
 	}
+	free(tmpstr);
 	close(fd);
 	return (i);
+}
+
+char	*skip_first_n(int fd)
+{
+	char	*str;
+
+	str = get_next_line(fd);
+	while (str[0] == '\n')
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
+	return (str);
 }
 
 void	read_map(char **av, t_src *data)
@@ -74,22 +89,20 @@ void	read_map(char **av, t_src *data)
 
 	lines = file_linecounter(av[1]) - skip_n(av[1]) - 1;
 	data->mapdata = (char **)malloc(sizeof(char *) * lines);
-	data->mapdata = (char **)malloc(sizeof(char *) * lines);
 	fd = open(av[1], O_RDONLY);
-	tmpstr = get_next_line(fd);
-	while (tmpstr[0] == '\n')
-		tmpstr = get_next_line(fd);
+	tmpstr = skip_first_n(fd);
 	i = 0;
 	tmp = lines;
 	while (lines > 0)
 	{
 		data->mapdata[i++] = filling(tmpstr, len_str(tmpstr));
+		free(tmpstr);
 		tmpstr = get_next_line(fd);
 		lines--;
 	}
-	data->mapdata[i] = '\0';
+	data->mapdata[i] = NULL;
 	good_format(data->mapdata);
 	borders(data->mapdata, tmp);
 	filling_struct(data->mapdata, tmp, data);
+	free(tmpstr);
 }
-

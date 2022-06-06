@@ -6,13 +6,13 @@
 /*   By: amahi <amahi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:50:05 by amahi             #+#    #+#             */
-/*   Updated: 2021/11/25 20:18:31 by amahi            ###   ########.fr       */
+/*   Updated: 2022/05/31 16:29:39 by amahi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-size_t ft_strlen(const char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	i;
 
@@ -29,7 +29,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	ssize_t	j;
 	char	*res;
-	
+
 	if (!s1)
 	{
 		s1 = (char *)malloc(sizeof(char));
@@ -78,13 +78,13 @@ char	*filling_result(char *one_str)
 	i = 0;
 	if (!one_str[i])
 		return (NULL);
-	while(one_str[i] != '\n' && one_str[i])
+	while (one_str[i] != '\n' && one_str[i])
 		i++;
 	result = (char *)malloc(sizeof(char) * (i + 2));
 	if (!result)
 		return (NULL);
-	i = 0;		
-	while(one_str[i] != '\n' && one_str[i])
+	i = 0;
+	while (one_str[i] != '\n' && one_str[i])
 	{
 		result[i] = one_str[i];
 		i++;
@@ -98,7 +98,7 @@ char	*filling_result(char *one_str)
 	return (result);
 }
 
-char *cat_one_str(char *one_str)
+char	*cat_one_str(char *one_str)
 {
 	int		i;
 	int		j;
@@ -117,9 +117,9 @@ char *cat_one_str(char *one_str)
 		return (NULL);
 	i++;
 	j = 0;
-	while(one_str[i])
+	while (one_str[i])
 		remaider[j++] = one_str[i++];
 	remaider[j] = '\0';
 	free(one_str);
-	return(remaider);
+	return (remaider);
 }

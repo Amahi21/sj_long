@@ -6,7 +6,7 @@
 /*   By: amahi <amahi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 07:45:40 by amahi             #+#    #+#             */
-/*   Updated: 2022/05/23 10:24:20 by amahi            ###   ########.fr       */
+/*   Updated: 2022/06/03 16:36:31 by amahi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,17 @@ int	len_str(char *str)
 	while (str[i] != '\n')
 		i++;
 	return (i);
+}
+
+void	free_all(char **mass)
+{
+	int	i;
+
+	i = 0;
+	while (mass[i])
+	{
+		free(mass[i]);
+		i++;
+	}
+	free(mass);
 }
